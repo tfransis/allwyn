@@ -68,8 +68,14 @@ public class BooksApiStepDefs {
         test.api().books().updateBook(book);
     }
 
-    @When("a book with id {int} is retrieved")
-    public void getBook(int id) {
+    @When("the book is retrieved")
+    public void getBook() {
+        BookDto book = test.api().books().getBook((long)test.context().getBook().getId());
+        test.context().setBook(book);
+    }
+
+    @When("a book with id {long} is retrieved")
+    public void getBook(long id) {
         BookDto book = test.api().books().getBook(id);
         test.context().setBook(book);
     }
@@ -79,8 +85,28 @@ public class BooksApiStepDefs {
         test.api().books().validate().validateStatusCode(statusCode);
     }
 
+    @When("the book is deleted")
+    public void deleteBook() {
+        test.api().books().deleteBook((long)test.context().getBook().getId());
+    }
+
+    @When("a book with id {long} is deleted")
+    public void deleteBook(long id) {
+        test.api().books().deleteBook(id);
+    }
+
+    @When("all books are retrieved")
+    public void getBooks() {
+        test.context().setBooks(test.api().books().getBooks());
+    }
+
     @Then("verify that the book details match the expected values")
     public void validateBook() {
         test.api().books().validate().validateBook(test.context().getBook());
+    }
+
+    @Then("verify that the books in the library are {long}")
+    public void validateBook(long count) {
+        test.api().books().validate().validateBooksCount(count);
     }
 }

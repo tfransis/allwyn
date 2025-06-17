@@ -40,22 +40,20 @@ public class BooksApi {
     }
 
     @SneakyThrows
-    public BookDto getBook(Integer bookId) {
+    public BookDto getBook(Long bookId) {
         String getUrl = url + "/" + bookId;
         test.context().setResponse(GenericApi.get(getUrl));
-        test.context().getResponse().then().statusCode(200);
         return test.context().getResponse().body().as(BookDto.class);
     }
 
     @SneakyThrows
     public List<BookDto> getBooks() {
         test.context().setResponse(GenericApi.get(url));
-        test.context().getResponse().then().statusCode(200);
         return Arrays.asList(test.context().getResponse().body().as(BookDto[].class));
     }
 
     @SneakyThrows
-    public void deleteBook(Integer bookId) {
+    public void deleteBook(Long bookId) {
         String deleteUrl = url + "/" + bookId;
         test.context().setResponse(GenericApi.delete(deleteUrl));
     }
