@@ -1,5 +1,6 @@
 package net.azurewebsites.fakerestapi.stepdefs.books;
 
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.azurewebsites.fakerestapi.books.dto.BookDto;
 import net.azurewebsites.fakerestapi.utils.Test;
@@ -20,22 +21,51 @@ public class BooksApiStepDefs {
                 .setDescription("This is a sample book description.")
                 .setExcerpt("This is an excerpt from the sample book.")
                 .setPageCount(300)
-                .setPublishDate("2023-10-01");
+                .setPublishDate("2023-10-01T00:00:00");
 
         test.context().setBook(book);
         test.api().books().addBook(book);
     }
 
-    @When("a book is updated")
+    @When("a new book with missing mandatory fields is added")
+    public void addInvalidBook() {
+        BookDto book = new BookDto();
+
+        book.setId(null)
+                .setTitle("Sample Book")
+                .setDescription("This is a sample book description.")
+                .setExcerpt("This is an excerpt from the sample book.")
+                .setPageCount(null)
+                .setPublishDate(null);
+
+        test.context().setBook(book);
+        test.api().books().addBook(book);
+    }
+
+    @When("the book is updated")
     public void updateBook() {
         test.context().getBook()
                 .setTitle("Updated Sample Book")
                 .setDescription("This is an updated sample book description.")
                 .setExcerpt("This is an updated excerpt from the sample book.")
                 .setPageCount(400)
-                .setPublishDate("2024-10-01");
+                .setPublishDate("2024-10-01T00:00:00");
 
         test.api().books().updateBook(test.context().getBook());
+    }
+
+    @When("a non-existing book with id {int} is updated")
+    public void updateNonExistingBook(int id) {
+        BookDto book = new BookDto();
+
+        book.setId(id)
+                .setTitle("Sample Book")
+                .setDescription("This is a sample book description.")
+                .setExcerpt("This is an excerpt from the sample book.")
+                .setPageCount(300)
+                .setPublishDate("2023-10-01T00:00:00");
+
+        test.api().books().updateBook(book);
     }
 
     @When("a book with id {int} is retrieved")
@@ -44,9 +74,13 @@ public class BooksApiStepDefs {
         test.context().setBook(book);
     }
 
-    @When("verify that the response status code is {int}")
-    public void verifyStatusCode(int id) {
-        BookDto book = test.api().books().getBook(id);
-        test.context().setBook(book);
+    @Then("verify that the response status code is {int}")
+    public void validateStatusCode(int statusCode) {
+        test.api().books().validate().validateStatusCode(statusCode);
+    }
+
+    @Then("verify that the book details match the expected values")
+    public void validateBook() {
+        test.api().books().validate().validateBook(test.context().getBook());
     }
 }

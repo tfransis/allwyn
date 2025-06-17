@@ -44,6 +44,6 @@ public class BookDto
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return this.id;
     }
 }

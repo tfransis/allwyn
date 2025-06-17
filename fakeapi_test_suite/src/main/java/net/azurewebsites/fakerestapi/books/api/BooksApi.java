@@ -1,6 +1,7 @@
 package net.azurewebsites.fakerestapi.books.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.response.Response;
 import lombok.SneakyThrows;
 import net.azurewebsites.fakerestapi.books.dto.BookDto;
 import net.azurewebsites.fakerestapi.books.validations.BooksApiValidations;

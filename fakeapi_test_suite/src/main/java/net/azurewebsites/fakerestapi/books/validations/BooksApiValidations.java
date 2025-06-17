@@ -16,7 +16,7 @@ public class BooksApiValidations {
     }
 
     public void validateBook(BookDto expectedBook) {
-        BookDto actualBook = test.api().books().getBook(expectedBook.getId());
+        BookDto actualBook = test.context().getResponse().body().as(BookDto.class);
         Assert.assertEquals(actualBook, expectedBook);
     }
 }
