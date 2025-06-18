@@ -35,7 +35,7 @@ public class AuthorsApi {
     public void updateAuthor(AuthorDto author) {
         String updateUrl = url + "/" + author.getId();
         String body = new ObjectMapper().writeValueAsString(author);
-        test.context().setResponse(GenericApi.post(updateUrl, body));
+        test.context().setResponse(GenericApi.put(updateUrl, body));
     }
 
     @SneakyThrows

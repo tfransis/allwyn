@@ -35,7 +35,7 @@ public class BooksApi {
     public void updateBook(BookDto book) {
         String updateUrl = url + "/" + book.getId();
         String body = new ObjectMapper().writeValueAsString(book);
-        test.context().setResponse(GenericApi.post(updateUrl, body));
+        test.context().setResponse(GenericApi.put(updateUrl, body));
     }
 
     @SneakyThrows
