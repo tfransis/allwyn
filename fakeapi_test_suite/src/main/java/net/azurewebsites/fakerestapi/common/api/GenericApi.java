@@ -1,4 +1,4 @@
-package net.azurewebsites.fakerestapi.utils;
+package net.azurewebsites.fakerestapi.common.api;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

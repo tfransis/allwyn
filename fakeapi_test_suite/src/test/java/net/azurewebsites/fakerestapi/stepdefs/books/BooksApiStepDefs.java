@@ -80,11 +80,6 @@ public class BooksApiStepDefs {
         test.context().setBook(book);
     }
 
-    @Then("verify that the response status code is {int}")
-    public void validateStatusCode(int statusCode) {
-        test.api().books().validate().validateStatusCode(statusCode);
-    }
-
     @When("the book is deleted")
     public void deleteBook() {
         test.api().books().deleteBook((long)test.context().getBook().getId());

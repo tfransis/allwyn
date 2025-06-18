@@ -1,7 +1,7 @@
 package net.azurewebsites.fakerestapi.books.validations;
 
 import net.azurewebsites.fakerestapi.books.dto.BookDto;
-import net.azurewebsites.fakerestapi.utils.GenericApiValidations;
+import net.azurewebsites.fakerestapi.common.api.GenericApiValidations;
 import net.azurewebsites.fakerestapi.utils.Test;
 import org.testng.Assert;
 

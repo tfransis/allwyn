@@ -1,4 +1,6 @@
-package net.azurewebsites.fakerestapi.utils;
+package net.azurewebsites.fakerestapi.common.api;
+
+import net.azurewebsites.fakerestapi.utils.Test;
 
 public class GenericApiValidations {
     final Test test;

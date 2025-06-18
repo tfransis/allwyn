@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import net.azurewebsites.fakerestapi.authors.dto.AuthorDto;
 import net.azurewebsites.fakerestapi.authors.validations.AuthorsApiValidations;
-import net.azurewebsites.fakerestapi.utils.GenericApi;
+import net.azurewebsites.fakerestapi.common.api.GenericApi;
 import net.azurewebsites.fakerestapi.utils.Test;
 
 import java.util.Arrays;

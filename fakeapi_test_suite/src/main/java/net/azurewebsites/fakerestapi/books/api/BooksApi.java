@@ -1,11 +1,10 @@
 package net.azurewebsites.fakerestapi.books.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.response.Response;
 import lombok.SneakyThrows;
 import net.azurewebsites.fakerestapi.books.dto.BookDto;
 import net.azurewebsites.fakerestapi.books.validations.BooksApiValidations;
-import net.azurewebsites.fakerestapi.utils.GenericApi;
+import net.azurewebsites.fakerestapi.common.api.GenericApi;
 import net.azurewebsites.fakerestapi.utils.Test;
 
 import java.util.Arrays;
