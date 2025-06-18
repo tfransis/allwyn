@@ -46,10 +46,10 @@ public class AuthorsApi {
     }
 
     @SneakyThrows
-    public AuthorDto getAuthorByBookId(Long bookId) {
-        String getUrl = url + "/authors/books/}" + bookId;
+    public List<AuthorDto> getAuthorsByBookId(int bookId) {
+        String getUrl = url + "/authors/books/" + bookId;
         test.context().setResponse(GenericApi.get(getUrl));
-        return test.context().getResponse().body().as(AuthorDto.class);
+        return Arrays.asList(test.context().getResponse().body().as(AuthorDto[].class));
     }
 
     @SneakyThrows

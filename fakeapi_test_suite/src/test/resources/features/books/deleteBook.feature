@@ -1,3 +1,4 @@
+@Books
 Feature: Delete A Book
 
   Scenario: Delete a book from the library after it has been added

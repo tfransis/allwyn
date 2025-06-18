@@ -2,7 +2,6 @@ package net.azurewebsites.fakerestapi.utils.factories;
 
 import net.azurewebsites.fakerestapi.authors.api.AuthorsApi;
 import net.azurewebsites.fakerestapi.books.api.BooksApi;
-import net.azurewebsites.fakerestapi.common.api.GenericApi;
 import net.azurewebsites.fakerestapi.utils.Test;
 
 import java.util.Objects;

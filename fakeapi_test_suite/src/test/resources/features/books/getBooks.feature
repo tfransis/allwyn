@@ -1,3 +1,4 @@
+@Books
 Feature: Get All Books from the Library
 
   Scenario: Get all books that have been added to the library

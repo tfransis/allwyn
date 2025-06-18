@@ -1,15 +1,13 @@
 package net.azurewebsites.fakerestapi.books.validations;
 
 import net.azurewebsites.fakerestapi.books.dto.BookDto;
-import net.azurewebsites.fakerestapi.common.api.GenericApiValidations;
 import net.azurewebsites.fakerestapi.utils.Test;
 import org.testng.Assert;
 
-public class BooksApiValidations extends GenericApiValidations {
+public class BooksApiValidations {
     final Test test;
 
     public BooksApiValidations(Test test) {
-        super(test);
         this.test = test;
     }
 

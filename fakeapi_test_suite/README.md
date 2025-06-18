@@ -23,9 +23,17 @@ In IntelliJ IDEA below plugins are needed:
 - cucumber for java
 - gherkin
 
-For execution via Maven, bellow command is used:
+For execution via Maven, the following command is used:
 
     mvn clean install
+
+To execute only the tests related to Books, you can use the following command with a specific tag:
+
+    mvn clean install -D"cucumber.filter.tags=@Books"
+
+To execute only the tests related to Authors, you can use the following command with a specific tag:
+
+    mvn clean install -D"cucumber.filter.tags=@Authors"
 
 Regarding <b>environment variables</b>, by default src/main/resources/env.properties is used
 

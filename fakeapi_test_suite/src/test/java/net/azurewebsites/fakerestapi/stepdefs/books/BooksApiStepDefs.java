@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.azurewebsites.fakerestapi.books.dto.BookDto;
 import net.azurewebsites.fakerestapi.utils.Test;
+import net.azurewebsites.fakerestapi.utils.Utilities;
 
 public class BooksApiStepDefs {
     final Test test;
@@ -16,11 +17,26 @@ public class BooksApiStepDefs {
     public void addBook() {
         BookDto book = new BookDto();
 
-        book.setId((int) ((Math.random() * (500000 - 3000)) + 3000))
+        book.setId(Utilities.getRandomNumber(3000, 500000))
                 .setTitle("Sample Book")
                 .setDescription("This is a sample book description.")
                 .setExcerpt("This is an excerpt from the sample book.")
-                .setPageCount(300)
+                .setPageCount(Utilities.getRandomNumber(100, 1000))
+                .setPublishDate("2023-10-01T00:00:00");
+
+        test.context().setBook(book);
+        test.api().books().addBook(book);
+    }
+
+    @When("a book with id {int} is added")
+    public void addBook(int id) {
+        BookDto book = new BookDto();
+
+        book.setId(id)
+                .setTitle("Sample Book")
+                .setDescription("This is a sample book description.")
+                .setExcerpt("This is an excerpt from the sample book.")
+                .setPageCount(Utilities.getRandomNumber(100, 1000))
                 .setPublishDate("2023-10-01T00:00:00");
 
         test.context().setBook(book);
@@ -50,6 +66,18 @@ public class BooksApiStepDefs {
                 .setExcerpt("This is an updated excerpt from the sample book.")
                 .setPageCount(400)
                 .setPublishDate("2024-10-01T00:00:00");
+
+        test.api().books().updateBook(test.context().getBook());
+    }
+
+    @When("the book is updated by removing the mandatory fields")
+    public void updateBookInvalid() {
+        test.context().getBook()
+                .setTitle("Updated Sample Book")
+                .setDescription("This is an updated sample book description.")
+                .setExcerpt("This is an updated excerpt from the sample book.")
+                .setPageCount(null)
+                .setPublishDate(null);
 
         test.api().books().updateBook(test.context().getBook());
     }
@@ -101,7 +129,7 @@ public class BooksApiStepDefs {
     }
 
     @Then("verify that the books in the library are {long}")
-    public void validateBook(long count) {
+    public void validateBooksCount(long count) {
         test.api().books().validate().validateBooksCount(count);
     }
 }
